@@ -1,6 +1,6 @@
 import './style.css';
 import { initCosmosBackground } from './components/background.js';
-import { fetchGitHubRepos } from './components/github.js';
+import { fetchGitHubRepos, fetchGitHubProfile } from './components/github.js';
 import { initSkillsCloud } from './components/skills.js';
 
 // Initialize Background
@@ -9,9 +9,24 @@ initCosmosBackground();
 // Initialize Skills Cloud
 initSkillsCloud();
 
-// Fetch GitHub Projects
-// Replace 'octocat' with the user's actual username if provided later
-fetchGitHubRepos('octocat');
+// Fetch GitHub Projects with actual username
+const GITHUB_USERNAME = 'ELIXREIX';
+
+// Load GitHub Profile and Repos
+async function loadGitHubData() {
+    const profile = await fetchGitHubProfile(GITHUB_USERNAME);
+    if (profile) {
+        console.log('GitHub Profile loaded:', profile.name || profile.login);
+        // อัพเดตชื่อใน hero section
+        const subtitleEl = document.querySelector('.subtitle');
+        if (subtitleEl) {
+            subtitleEl.innerHTML = `${profile.name || profile.login} <span class="highlight">| ${profile.bio || 'Full Stack Developer'}</span>`;
+        }
+    }
+    fetchGitHubRepos(GITHUB_USERNAME);
+}
+
+loadGitHubData();
 
 // Mobile Navigation Toggle
 const hamburger = document.querySelector('.hamburger');

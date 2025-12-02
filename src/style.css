@@ -334,6 +334,8 @@ h3,
   justify-content: space-between;
   align-items: center;
   margin-top: auto;
+  flex-wrap: wrap;
+  gap: 1rem;
 }
 
 .repo-lang {
@@ -341,17 +343,44 @@ h3,
   color: var(--neon-purple);
 }
 
+.repo-links {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
 .repo-link {
   color: var(--text-main);
   text-decoration: none;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   display: flex;
   align-items: center;
   gap: 5px;
+  padding: 0.4rem 0.8rem;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
 }
 
 .repo-link:hover {
-  text-decoration: underline;
+  background: rgba(0, 243, 255, 0.1);
+  border-color: var(--neon-blue);
+  text-decoration: none;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 243, 255, 0.2);
+}
+
+.repo-link.live-link {
+  background: rgba(188, 19, 254, 0.1);
+  border-color: var(--neon-purple);
+}
+
+.repo-link.live-link:hover {
+  background: rgba(188, 19, 254, 0.2);
+  border-color: var(--neon-purple);
+  box-shadow: 0 4px 12px rgba(188, 19, 254, 0.3);
 }
 
 /* Contact */
